@@ -56,7 +56,9 @@ export default function Home() {
       <a className="skip" href="#work">Skip to work</a>
 
       <header className="nav">
-        <a href="#top" className="brand">Shifali Gwal</a>
+        <a href="#top" className="brand" aria-label="Shifali Gwal home">
+          <span className="brand-mark">SG</span>
+        </a>
         <nav aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#research" className="nav-hidden">Research</a>
