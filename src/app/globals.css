@@ -228,6 +228,7 @@ h1 {
   max-height: 620px;
   object-fit: contain;
   filter: drop-shadow(0 24px 50px rgba(11, 18, 28, 0.12));
+  animation: floatIllustration 4s ease-in-out infinite;
 }
 
 .scene-shell {
@@ -452,6 +453,11 @@ h1 {
 @keyframes sceneFloat {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes floatIllustration {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
 }
 
 /* metrics */
