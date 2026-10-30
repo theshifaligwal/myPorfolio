@@ -1,5 +1,4 @@
 import HeroFrame from "@/components/HeroFrame";
-import HeroMotion from "@/components/HeroMotion";
 import ThemeToggle from "@/components/ThemeToggle";
 import {
   siteUrl,
@@ -49,8 +48,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      <HeroMotion />
-
       <a className="skip" href="#work">Skip to work</a>
 
       <header className="nav">
