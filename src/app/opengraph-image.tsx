@@ -17,8 +17,8 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          background: "#f5f1ee",
-          color: "#1f1a17",
+          background: "#181412",
+          color: "#f6efe8",
         }}
       >
         <div
@@ -42,13 +42,13 @@ export default function Image() {
           <div style={{ fontSize: 104, fontWeight: 800, letterSpacing: -3, lineHeight: 1 }}>
             {profile.name}
           </div>
-          <div style={{ display: "flex", fontSize: 44, color: "#655d59", marginTop: 24 }}>
+          <div style={{ display: "flex", fontSize: 44, color: "#c8b7af", marginTop: 24 }}>
             {profile.roles[0]}
             <span style={{ color: "#b8664f", margin: "0 16px" }}>&amp;</span>
             {profile.roles[1]}
           </div>
         </div>
-        <div style={{ display: "flex", fontSize: 30, color: "#655d59" }}>
+        <div style={{ display: "flex", fontSize: 30, color: "#c8b7af" }}>
           Figma · React · Next.js · {profile.location}
         </div>
       </div>

@@ -22,10 +22,6 @@ const mono = JetBrains_Mono({
   preload: false,
 });
 
-// Runs before first paint so the page never flashes the wrong theme.
-// Dark is the default; light only if the visitor picked it with the toggle.
-const themeScript = `try{var t=localStorage.getItem("theme")==="light"?"light":"dark";document.documentElement.setAttribute("data-theme",t);if(t==="light")document.addEventListener("DOMContentLoaded",function(){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content","#f5f1ee")})}catch(e){}`;
-
 const title = `${profile.name} · ${profile.roles.join(" & ")}`;
 const description =
   "Portfolio of Shifali Gwal, a Bengaluru-based frontend engineer and UI/UX designer who designs in Figma and builds in React and Next.js.";
@@ -55,24 +51,15 @@ export const metadata: Metadata = {
   },
 };
 
-// Browser UI colour on mobile (address bar). Matches the default dark theme;
-// ThemeToggle updates it when the visitor switches.
+// Browser UI colour on mobile (address bar), matching the dark site.
 export const viewport: Viewport = {
   themeColor: "#181412",
-  colorScheme: "dark light",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      data-theme="dark"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
-      suppressHydrationWarning
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body>
         {children}
         <SpeedInsights />

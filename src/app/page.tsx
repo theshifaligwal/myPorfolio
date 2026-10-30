@@ -1,5 +1,4 @@
 import HeroFrame from "@/components/HeroFrame";
-import ThemeToggle from "@/components/ThemeToggle";
 import {
   siteUrl,
   profile,
@@ -60,7 +59,6 @@ export default function Home() {
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
         </nav>
-        <ThemeToggle />
       </header>
 
       <main id="top">
