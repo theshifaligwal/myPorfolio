@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { profile, siteUrl } from "@/data/content";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -18,14 +19,32 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+const title = `${profile.name} · ${profile.roles.join(" & ")}`;
+const description =
+  "Portfolio of Shifali Gwal, a Bengaluru-based frontend engineer and UI/UX designer who designs in Figma and builds in React and Next.js.";
+
 export const metadata: Metadata = {
-  title: "Shifali Gwal · Frontend Engineer & UI/UX Designer",
-  description:
-    "Portfolio of Shifali Gwal, a Bengaluru-based frontend engineer and UI/UX designer who designs in Figma and builds in React and Next.js.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  authors: [{ name: profile.name, url: siteUrl }],
+  creator: profile.name,
   openGraph: {
-    title: "Shifali Gwal · Frontend Engineer & UI/UX Designer",
+    title,
     description: "Designs in Figma. Builds in React and Next.js.",
-    type: "website",
+    type: "profile",
+    url: "/",
+    siteName: profile.name,
+    locale: "en_IN",
+    firstName: "Shifali",
+    lastName: "Gwal",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: "Designs in Figma. Builds in React and Next.js.",
+    creator: profile.xHandle,
   },
 };
 

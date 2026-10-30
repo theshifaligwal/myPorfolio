@@ -1,0 +1,32 @@
+# Shifali Gwal
+
+> Shifali Gwal is a Bengaluru-based frontend engineer and UI/UX designer who designs interfaces in Figma and builds them in React and Next.js, with a focus on Core Web Vitals, SEO and accessibility. Open to Frontend Engineer, UI/UX Designer and Design Engineer roles, hybrid or remote.
+
+## Work
+
+- JaisPro (Mar – Aug 2026): Freelance UI/UX designer. Designed a company website and an e-commerce website in Figma, grounded in user research.
+- D2C web app, wallet and rewards (Apr – Sep 2024): Web developer. Built on Next.js App Router and Tailwind CSS. LCP 0.8 s and CLS 0.03 on 4G. Wallet and rewards engine raised average order value 27% with ₹1.6 crore redeemed. SEO playbook (dynamic OG tags, sitemap, structured data) raised organic traffic 58% in 8 weeks.
+- Madras Mandi (Jul 2022 – Apr 2024): Full-stack developer. Migrated React to Next.js with SSR and ISR, cutting page load by 2.4 s and bundle size by 210 kB. Built Instant Delivery with location-aware slots, growing daily orders 1.7× (2,000 to 3,400). Built the OgClub B2B portal, handling ₹4.2 crore monthly GMV.
+
+## Research
+
+- M.Tech dissertation, Shri Venkateshwara University: "Performance Analysis of Supervised Learning Algorithms on Structured Data". Compared 8 algorithms on 4 UCI datasets; XGBoost ranked best, Random Forest second.
+
+## Skills
+
+- Design: Figma, UI design, UX design, user research
+- Frontend: React, Next.js, TypeScript, Tailwind CSS, Redux-Saga
+- Quality: Core Web Vitals, SEO, performance budgets, visual regression tests
+- Tooling: Jotai, Vite, Turborepo, GitLab CI, Node.js
+
+## Education
+
+- M.Tech, Computer Science, Shri Venkateshwara University (2024 – 2026)
+- B.Tech, Computer Science, Veer Bahadur Singh Purvanchal University
+
+## Links
+
+- Website: https://my-portfolio-six-drab-75.vercel.app
+- LinkedIn: https://www.linkedin.com/in/theshifaligwal
+- GitHub: https://github.com/theshifaligwal
+- X: https://twitter.com/Theshifaligwal

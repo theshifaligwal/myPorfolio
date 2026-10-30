@@ -1,6 +1,10 @@
 // All portfolio content lives here. Edit this file to update the site.
 // Facts come from Shifali's LinkedIn / GitHub. Items marked TODO need her confirmation.
 
+// The live URL. Used for canonical links, Open Graph, the sitemap and JSON-LD.
+// Change this one line if the site moves to a custom domain.
+export const siteUrl = "https://my-portfolio-six-drab-75.vercel.app";
+
 export const profile = {
   name: "Shifali Gwal",
   roles: ["Frontend Engineer", "UI/UX Designer"],
@@ -10,7 +14,11 @@ export const profile = {
   openTo: ["Frontend Engineer", "UI/UX Designer", "Design Engineer"],
   intro:
     "I design interfaces in Figma and build them in React and Next.js. Same person, one handoff less.",
+  // Plain, self-contained description for search snippets, AI answers and structured data.
+  summary:
+    "Shifali Gwal is a Bengaluru-based frontend engineer and UI/UX designer who designs interfaces in Figma and builds them in React and Next.js, with a focus on Core Web Vitals, SEO and accessibility.",
   about: [
+    "I'm Shifali Gwal, a frontend engineer and UI/UX designer based in Bengaluru, India. I design interfaces in Figma and build them in React, Next.js and TypeScript.",
     "I started in web design, moved into full-stack development, settled into frontend engineering, and in 2026 added UI/UX design to the work I do for clients.",
     "I care about the part where a design meets a real browser: Core Web Vitals, SEO, accessibility, and the small details that decide if a page feels fast. I also mentor interns and enjoy developer-experience tooling like Jotai, Vite and Turborepo.",
   ],
@@ -21,6 +29,7 @@ export const profile = {
     github: "https://github.com/theshifaligwal",
     x: "https://twitter.com/Theshifaligwal",
   },
+  xHandle: "@Theshifaligwal",
 };
 
 export const metrics = [

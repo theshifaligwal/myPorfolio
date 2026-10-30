@@ -1,8 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import HeroFrame from "@/components/HeroFrame";
+import HeroMotion from "@/components/HeroMotion";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
+  siteUrl,
   profile,
   metrics,
   projects,
@@ -13,46 +13,44 @@ import {
   repos,
 } from "@/data/content";
 
+// Structured data: tells search engines and AI tools who this page is about,
+// and links the site to the same person's LinkedIn, GitHub and X profiles.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: siteUrl,
+  mainEntity: {
+    "@type": "Person",
+    "@id": `${siteUrl}/#person`,
+    name: profile.name,
+    url: siteUrl,
+    description: profile.summary,
+    jobTitle: profile.roles,
+    email: `mailto:${profile.email}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bengaluru",
+      addressRegion: "Karnataka",
+      addressCountry: "IN",
+    },
+    sameAs: Object.values(profile.links),
+    knowsAbout: skills.flatMap((g) => g.items),
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "Shri Venkateshwara University" },
+      { "@type": "CollegeOrUniversity", name: "Veer Bahadur Singh Purvanchal University" },
+    ],
+  },
+};
+
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = savedTheme ? savedTheme === "dark" : false;
-    setDarkMode(prefersDark);
-    document.documentElement.setAttribute("data-theme", prefersDark ? "dark" : "light");
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
-
-  useEffect(() => {
-    const heroCopy = document.querySelector(".hero-copy") as HTMLElement | null;
-    const heroFrame = document.querySelector(".hero-frame") as HTMLElement | null;
-
-    if (!heroCopy || !heroFrame) return;
-
-    const updateMotion = () => {
-      const scrollY = window.scrollY || 0;
-      const progress = Math.min(scrollY / 600, 1);
-
-      heroCopy.style.transform = `translateY(${scrollY * 0.12}px)`;
-      heroCopy.style.opacity = `${1 - progress * 0.2}`;
-
-      heroFrame.style.transform = `translateY(${scrollY * 0.18}px)`;
-      heroFrame.style.opacity = `${1 - progress * 0.1}`;
-    };
-
-    updateMotion();
-    window.addEventListener("scroll", updateMotion, { passive: true });
-
-    return () => window.removeEventListener("scroll", updateMotion);
-  }, []);
-
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
+      <HeroMotion />
+
       <a className="skip" href="#work">Skip to work</a>
 
       <header className="nav">
@@ -65,18 +63,7 @@ export default function Home() {
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button
-          type="button"
-          className={`theme-toggle ${darkMode ? "is-dark" : "is-light"}`}
-          onClick={() => setDarkMode((current) => !current)}
-          aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-          title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          <span className="theme-toggle-track">
-            <span className="theme-toggle-thumb" aria-hidden="true" />
-          </span>
-          <span className="theme-toggle-label">{darkMode ? "Dark" : "Light"}</span>
-        </button>
+        <ThemeToggle />
       </header>
 
       <main id="top">
@@ -99,16 +86,19 @@ export default function Home() {
           <HeroFrame />
         </section>
 
-        <section className="wrap metrics hidden-section" aria-label="Results">
-          <ul>
-            {metrics.map((m) => (
-              <li key={m.label}>
-                <strong>{m.value}</strong>
-                <span>{m.label}</span>
-                <small>{m.note}</small>
-              </li>
-            ))}
-          </ul>
+        <section className="wrap metrics">
+          <details className="collapse">
+            <summary><h2>Results in numbers</h2></summary>
+            <ul>
+              {metrics.map((m) => (
+                <li key={m.label}>
+                  <strong>{m.value}</strong>
+                  <span>{m.label}</span>
+                  <small>{m.note}</small>
+                </li>
+              ))}
+            </ul>
+          </details>
         </section>
 
         <section id="work" className="wrap section">
@@ -149,26 +139,28 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="research" className="wrap section hidden-section">
-          <h2>Research</h2>
-          <article className="research">
-            <p className="org">{research.context}</p>
-            <h3>{research.title}</h3>
-            <p>{research.summary}</p>
-            <dl>
-              {research.facts.map(([k, v]) => (
-                <div key={k}>
-                  <dt>{k}</dt>
-                  <dd>{v}</dd>
-                </div>
-              ))}
-            </dl>
-            <ul className="chips" aria-label="Tools">
-              {research.stack.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ul>
-          </article>
+        <section id="research" className="wrap section">
+          <details className="collapse">
+            <summary><h2>Research</h2></summary>
+            <article className="research">
+              <p className="org">{research.context}</p>
+              <h3>{research.title}</h3>
+              <p>{research.summary}</p>
+              <dl>
+                {research.facts.map(([k, v]) => (
+                  <div key={k}>
+                    <dt>{k}</dt>
+                    <dd>{v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <ul className="chips" aria-label="Tools">
+                {research.stack.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </article>
+          </details>
         </section>
 
         <section id="skills" className="wrap section">
@@ -187,44 +179,50 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="wrap section hidden-section">
-          <h2>UI/UX career</h2>
-          <ol className="timeline">
-            {uiuxCareer.map((t) => (
-              <li key={t.what + t.when}>
-                <span className="when">{t.when}</span>
-                <span className="what">{t.what}</span>
-                <span className="where-at">{t.where}</span>
-              </li>
-            ))}
-          </ol>
+        <section className="wrap section">
+          <details className="collapse">
+            <summary><h2>UI/UX career</h2></summary>
+            <ol className="timeline">
+              {uiuxCareer.map((t) => (
+                <li key={t.what + t.when}>
+                  <span className="when">{t.when}</span>
+                  <span className="what">{t.what}</span>
+                  <span className="where-at">{t.where}</span>
+                </li>
+              ))}
+            </ol>
+          </details>
         </section>
 
-        <section className="wrap section hidden-section">
-          <h2>Frontend career</h2>
-          <ol className="timeline">
-            {frontendCareer.map((t) => (
-              <li key={t.what + t.when}>
-                <span className="when">{t.when}</span>
-                <span className="what">{t.what}</span>
-                <span className="where-at">{t.where}</span>
-              </li>
-            ))}
-          </ol>
+        <section className="wrap section">
+          <details className="collapse">
+            <summary><h2>Frontend career</h2></summary>
+            <ol className="timeline">
+              {frontendCareer.map((t) => (
+                <li key={t.what + t.when}>
+                  <span className="when">{t.when}</span>
+                  <span className="what">{t.what}</span>
+                  <span className="where-at">{t.where}</span>
+                </li>
+              ))}
+            </ol>
+          </details>
         </section>
 
-        <section className="wrap section hidden-section">
-          <h2>On GitHub</h2>
-          <ul className="repos">
-            {repos.map((r) => (
-              <li key={r.name}>
-                <a href={`${profile.links.github}/${r.name}`} target="_blank" rel="noreferrer">
-                  {r.name}
-                </a>
-                <span>{r.note}</span>
-              </li>
-            ))}
-          </ul>
+        <section className="wrap section">
+          <details className="collapse">
+            <summary><h2>On GitHub</h2></summary>
+            <ul className="repos">
+              {repos.map((r) => (
+                <li key={r.name}>
+                  <a href={`${profile.links.github}/${r.name}`} target="_blank" rel="noreferrer">
+                    {r.name}
+                  </a>
+                  <span>{r.note}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
         </section>
 
         <section id="contact" className="wrap contact">
